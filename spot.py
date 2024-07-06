@@ -1,9 +1,12 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from dotenv import load_dotenv
+import os
 
-username = ''
-clientID = ''
-clientSecret = ''
+load_dotenv(dotenv_path='Keys.env')
+username = 'Sticker94'
+clientID = os.getenv('SPOTIFY_CLIENT_ID')
+clientSecret = os.getenv('SPOTIFY_CLIENT_SECRET')
 redirect_uri = 'http://localhost:8888/callback'
 
 def spotify_authenicate(client_id, client_secret, redirect_uri, username):

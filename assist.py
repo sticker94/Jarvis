@@ -2,13 +2,20 @@ from openai import OpenAI
 import time
 from pygame import mixer
 import os
-#https://platform.openai.com/playground/assistants
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv(dotenv_path='Keys.env')
+
+# Set your OpenAI API key
+api_key = os.getenv('OPENAI_API_KEY')
+
 # Initialize the client and mixer
-client = OpenAI(default_headers={"OpenAI-Beta": "assistants=v2"})
+client = OpenAI(api_key=api_key, default_headers={"OpenAI-Beta": "assistants=v2"})
 mixer.init()
 
-assistant_id = ""
-thread_id = ""
+assistant_id = "asst_LUL1wtigL2g5yB9opwodDaL1"
+thread_id = "thread_lMzjNk8EhUU1B4aM2bhhlje4"
 
 # Retrieve the assistant and thread
 assistant = client.beta.assistants.retrieve(assistant_id)
@@ -18,12 +25,12 @@ def ask_question_memory(question):
     global thread
     client.beta.threads.messages.create(thread.id, role="user", content=question)
     run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id=assistant.id)
-    
+
     while (run_status := client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)).status != 'completed':
         if run_status.status == 'failed':
             return "The run failed."
         time.sleep(1)
-    
+
     messages = client.beta.threads.messages.list(thread_id=thread.id)
     return messages.data[0].content[0].text.value
 
