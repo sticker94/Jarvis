@@ -2,12 +2,21 @@ pyaudio
 SpeechRecognition
 --extra-index-url https://download.pytorch.org/whl/cu116
 torch
-realtimestt
-pygame
-openai
+realtimestt~=0.2.0
+pygame~=2.6.0
+openai~=1.35.10
 python_weather
-icrawler
-spotipy
+icrawler~=0.6.9
+spotipy~=2.24.0
 pyttsx3
-python-dotenv
+python-dotenv~=1.0.1
 git+https://github.com/openai/whisper.git
+pyannote.audio
+numpy~=1.24.3
+speechbrain~=1.0.0
+torchaudio~=2.3.1
+torchvision
+PyAudioAnalysis~=0.3.14
+pydub~=0.25.1
+eyed3
+ffmpeg
