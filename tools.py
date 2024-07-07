@@ -1,14 +1,13 @@
-import python_weather
 import asyncio
 import assist
 from icrawler.builtin import GoogleImageCrawler
 import os
 import spot
 
-async def get_weather(city_name):
-    async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
-        weather = await client.get(city_name)
-        return weather
+#async def get_weather(city_name):
+#    async with python_weather.Client(unit=python_weather.IMPERIAL) as client:
+#        weather = await client.get(city_name)
+#        return weather
 
 def search(query):
     google_Crawler = GoogleImageCrawler(storage = {"root_dir": r'./images'})
@@ -16,12 +15,12 @@ def search(query):
 
 
 def parse_command(command):
-    if "weather" in command:
-        weather_description = asyncio.run(get_weather("Chicago"))
-        query = "System information: " + str(weather_description)
-        print(query)
-        response = assist.ask_question_memory(query)
-        done = assist.TTS(response)
+#    if "weather" in command:
+#        weather_description = asyncio.run(get_weather("Chicago"))
+#        query = "System information: " + str(weather_description)
+#        print(query)
+#        response = assist.ask_question_memory(query)
+#        done = assist.TTS(response)
 
     if "search" in command:
         files = os.listdir("./images")
